@@ -5,6 +5,7 @@ import (
 	"os"
 	"math/rand"
 	"time"
+	"bufio"
 )
 
 var Out *os.File
@@ -17,7 +18,7 @@ func init() {
 	In = os.Stdin
 }
 
-func main() {
+func main2() {
 	//Player
 	player := new(Character)
 	player.Name = "Paul"
@@ -42,3 +43,10 @@ func GetUserInput(i *int) {
 	fmt.Fscan(In, i)
 }
 
+func GetUserStrInput() string {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("\n >>> ")
+	text, _ := reader.ReadString('\n')
+	fmt.Println(text)
+	return text
+}

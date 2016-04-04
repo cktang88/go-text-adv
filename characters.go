@@ -9,7 +9,7 @@ type Character struct {
 	Speed   int
 	Weap    int
 	Npc     bool
-	Itens 	[]Item
+	Items 	[]int
 
 	Welcome         string
 	CurrentLocation string
