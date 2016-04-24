@@ -15,10 +15,6 @@ type Character struct {
 	CurrentLocation string
 }
 
-var Enemies = map[int]*Character{
-	0: {Name: "Klingon", Health: 50, Alive: true, Weap: 2, Npc: true},
-	1: {Name: "Romulan", Health: 55, Alive: true, Weap: 3, Npc: true},
-}
 
 func (p *Character) Equip(w int) {
 	p.Weap = w
@@ -45,27 +41,27 @@ func (slice Players) Swap(i, j int) {
 
 
 func (p *Character) Play() {
-	DisplayInfo(p.Welcome)
+	Output(p.Welcome)
 	for {
-		DisplayInfo(LocationMap[p.CurrentLocation].Description)
+		Output("blue", LocationMap[p.CurrentLocation].Description)
 		p.ProcessEvents(LocationMap[p.CurrentLocation].Events)
 		if p.Health <= 0 {
-			DisplayInfo("You are dead, game over!!!")
+			Output("white", "You are dead, game over!!!")
 			return
 		}
-		DisplayInfo("Health:", p.Health)
-		DisplayInfo("You can go to these places:")
-		for index, loc := range LocationMap[p.CurrentLocation].Transitions {
-			DisplayInfof("%d - %s\n", index+1, loc)
+		Output("blue", "Health:", p.Health)
+		if len(LocationMap[p.CurrentLocation].Items) > 0 {
+			Output("yellow", "You can see:")
+			for _, itm := range LocationMap[p.CurrentLocation].Items {
+				Outputf("yellow", "\t%s", Items[itm].Name)
+			}
 		}
-		i := 0
-		for i < 1 || i > len(LocationMap[p.CurrentLocation].Transitions) {
-			DisplayInfof("%s%d%s\n", "Where do you want to go (0 - to quit), [1...", len(LocationMap[p.CurrentLocation].Transitions), "]: ")
-			GetUserInput(&i)
+		Output("green", "You can go to these places:")
+		for _, loc := range LocationMap[p.CurrentLocation].Transitions {
+			Outputf("green", "\t%s", loc)
 		}
-		newLoc := i - 1
-		p.CurrentLocation = LocationMap[p.CurrentLocation].Transitions[newLoc]
-
+		cmd := UserInputln()
+		ProcessCommands(p, cmd)
 	}
 }
 

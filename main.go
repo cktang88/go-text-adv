@@ -6,11 +6,14 @@ import (
 	"math/rand"
 	"time"
 	"bufio"
+
+	"github.com/fatih/color"
 )
 
 var Out *os.File
 var In *os.File
 
+var player Character
 
 func init() {
 	rand.Seed(time.Now().UTC().UnixNano())
@@ -18,9 +21,8 @@ func init() {
 	In = os.Stdin
 }
 
-func main2() {
-	//Player
-	player := new(Character)
+func main() {
+	player = *new(Character)
 	player.Name = "Paul"
 	player.Speed = 1 + rand.Intn(100)
 	player.Health = 100
@@ -31,22 +33,35 @@ func main2() {
 	player.Play()
 }
 
-func DisplayInfof(format string, args ...interface{}) {
-	fmt.Fprintf(Out, format, args...)
+func Outputf(c string, format string, args ...interface{}) {
+	s := fmt.Sprintf(format, args...)
+	Output(c, s)
 }
 
-func DisplayInfo(args ...interface{}) {
-	fmt.Fprintln(Out, args...)
+func Output(c string, args ...interface{}) {
+	s := fmt.Sprint(args...)
+	col := color.WhiteString
+	switch(c) {
+	case "green":
+		col = color.GreenString
+	case "red":
+		col = color.RedString
+	case "blue":
+		col = color.BlueString
+	case "yellow":
+		col = color.YellowString
+	}
+	fmt.Fprintln(Out, col(s))
 }
 
-func GetUserInput(i *int) {
+func UserInput(i *int) {
 	fmt.Fscan(In, i)
 }
 
-func GetUserStrInput() string {
+func UserInputln() string {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("\n >>> ")
 	text, _ := reader.ReadString('\n')
-	fmt.Println(text)
 	return text
 }
+

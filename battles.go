@@ -8,9 +8,7 @@ import (
 func runBattle(players Players) {
 	sort.Sort(players)
 
-	DisplayInfo(players[0])
-	DisplayInfo(players[1])
-	DisplayInfo(players)
+	Output("red", players)
 	round := 1
 	numAlive := players.Len()
 	playerAction := 0
@@ -18,26 +16,26 @@ func runBattle(players Players) {
 		for x := 0; x < players.Len(); x++ {
 			players[x].Evasion = 0
 		}
-		DisplayInfo("Combat round", round, "begins...")
+		Output("green", "Combat round ", round, " begins...")
 		for x := 0; x < players.Len(); x++ {
 			if players[x].Alive != true {
 				continue
 			}
 			playerAction = 0
 			if !players[x].Npc {
-				DisplayInfo("DO you want to")
-				DisplayInfo("\t1 - Run")
-				DisplayInfo("\t2 - Evade")
-				DisplayInfo("\t3 - Attack")
-				GetUserInput(&playerAction)
+				Output("blue", "What Do you want to do?")
+				Output("blue", "\t1 - Run")
+				Output("blue", "\t2 - Evade")
+				Output("blue", "\t3 - Attack")
+				UserInput(&playerAction)
 			}
 			if playerAction == 2 {
 				players[x].Evasion = rand.Intn(15)
-				DisplayInfo("Evasion set to:", players[x].Evasion)
+				Output("green", "Evasion set to:", players[x].Evasion)
 			}
 			tgt := selectTarget(players, x)
 			if tgt != -1 {
-				DisplayInfo("player: ", x, "target: ", tgt)
+				Output("red", "player: ", x, ", target: ", tgt)
 				attp1 := players[x].Attack() - players[tgt].Evasion
 				if attp1 < 0 {
 					attp1 = 0
@@ -47,24 +45,23 @@ func runBattle(players Players) {
 					players[tgt].Alive = false
 					numAlive--
 				}
-				DisplayInfo(players[x].Name+" attacks and does", attp1, "points of damage with his", Weaps[players[x].Weap].Name, "to the ennemy.")
+				Output("green", players[x].Name+" attacks and does ", attp1, " points of damage with his ", Weaps[players[x].Weap].Name, " to the ennemy.")
 			}
 		}
 		if endBattle(players) || playerAction == 1 {
 			break
 		} else {
-			DisplayInfo(players)
+			Output("green", players)
 			round++
 		}
 	}
-	DisplayInfo(players)
-	DisplayInfo("Combat is over...")
+	Output("black", players)
+	Output("green", "Combat is over...")
 	for x := 0; x < players.Len(); x++ {
 		if players[x].Alive == true {
-			DisplayInfo(players[x].Name + " is still alive!!!")
+			Output("blue", players[x].Name + " is still alive!!!")
 		}
 	}
-	DisplayInfo(players)
 }
 
 func selectTarget(players []Character, x int) int {
