@@ -13,7 +13,7 @@ type Weapon struct {
 }
 
 func (w *Weapon) Fire() int {
-	return w.minAtt + rand.Intn(w.maxAtt)
+	return w.minAtt + rand.Intn(w.maxAtt-w.minAtt)
 }
 
 func init() {
