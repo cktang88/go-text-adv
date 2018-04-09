@@ -4,6 +4,7 @@ import (
 	"errors"
 )
 
+// Item represents an item
 type Item struct {
 	Name       string
 	Action     string
@@ -11,6 +12,7 @@ type Item struct {
 	Contains   []int
 }
 
+// FindItemByName finds an item from its name
 func FindItemByName(itemName string) (error, int, *Item) {
 	for index, itm := range Items {
 		if itm.Name == itemName {
@@ -20,6 +22,7 @@ func FindItemByName(itemName string) (error, int, *Item) {
 	return errors.New("Item not found"), -1, nil
 }
 
+// OpenItem attemps to let a character open an item
 func OpenItem(pla *Character, itemName string) {
 	loc := LocationMap[player.CurrentLocation]
 	for _, itm := range loc.Items {
@@ -37,6 +40,7 @@ func OpenItem(pla *Character, itemName string) {
 	}
 }
 
+// PlayerHasItem returns whether a character owns a certain item
 func PlayerHasItem(pla *Character, itm int) bool {
 	for _, pitm := range pla.Items {
 		if pitm == itm {
@@ -46,6 +50,7 @@ func PlayerHasItem(pla *Character, itm int) bool {
 	return false
 }
 
+// RemoveItemFromRoom removes the item from a given location
 func (it *Item) RemoveItemFromRoom(loc *Location) {
 	for index, itm := range loc.Items {
 		if Items[itm].Name == it.Name {
@@ -54,6 +59,7 @@ func (it *Item) RemoveItemFromRoom(loc *Location) {
 	}
 }
 
+// ItemInRoom returns whether item is in a given location
 //To be refactored on a location struct
 func (it *Item) ItemInRoom(loc *Location) bool {
 	for _, itm := range loc.Items {
@@ -64,6 +70,7 @@ func (it *Item) ItemInRoom(loc *Location) bool {
 	return false
 }
 
+// ItemOnPlayer returns whether the item belongs to a given character
 //To be refactored on a character struct
 func (it *Item) ItemOnPlayer(pla *Character) bool {
 	for _, itm := range pla.Items {

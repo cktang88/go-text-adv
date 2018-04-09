@@ -1,22 +1,26 @@
 package main
 
+// Items is a map of items
 var Items = map[int]*Item{
 	1: {Name: "Key"},
 	2: {Name: "Chest", ItemForUse: 1, Contains: []int{3}},
 	3: {Name: "Medal"},
 }
 
+// Weaps is a map of weapons
 var Weaps = map[int]*Weapon{
 	1: {Name: "Phaser", minAtt: 5, maxAtt: 15},
 	2: {Name: "Klingon Disruptor", minAtt: 1, maxAtt: 15},
 	3: {Name: "Romulan Disruptor", minAtt: 3, maxAtt: 12},
 }
 
+// Enemies is a map of character enemies
 var Enemies = map[int]*Character{
 	0: {Name: "Klingon", Health: 50, Alive: true, Weap: 2, Npc: true},
 	1: {Name: "Romulan", Health: 55, Alive: true, Weap: 3, Npc: true},
 }
 
+// evts is a map of events
 var evts = map[string]*Event{
 	"alienAttack":     {Type: "Combat", Chance: 20, Description: "An alien beams in front of you and shoots you with a ray gun.", Health: -50, Evt: "doctorTreatment"},
 	"doctorTreatment": {Type: "Story", Chance: 10, Description: "The doctor rushes in and inject you with a health boost.", Health: +30, Evt: ""},

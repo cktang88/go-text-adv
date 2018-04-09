@@ -10,7 +10,10 @@ import (
 	"github.com/fatih/color"
 )
 
+// Out is a pointer to the output file
 var Out *os.File
+
+// In is a pointer to the input file
 var In *os.File
 
 var player Character
@@ -33,11 +36,13 @@ func main() {
 	player.Play()
 }
 
+// Outputf prints args in a given format, with colors
 func Outputf(c string, format string, args ...interface{}) {
 	s := fmt.Sprintf(format, args...)
 	Output(c, s)
 }
 
+// Output prints args in color
 func Output(c string, args ...interface{}) {
 	s := fmt.Sprint(args...)
 	col := color.WhiteString
@@ -54,10 +59,12 @@ func Output(c string, args ...interface{}) {
 	fmt.Fprintln(Out, col(s))
 }
 
+// UserInput takes a user input integer
 func UserInput(i *int) {
 	fmt.Fscan(In, i)
 }
 
+// UserInputln takes a user input line
 func UserInputln() string {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("\n >>> ")

@@ -1,5 +1,6 @@
 package main
 
+// Character represents a character
 type Character struct {
 	Name    string
 	Health  int
@@ -14,14 +15,17 @@ type Character struct {
 	CurrentLocation string
 }
 
+// Equip equips an active weapon to the character
 func (p *Character) Equip(w int) {
 	p.Weap = w
 }
 
+// Attack fires all the player's weapons
 func (p *Character) Attack() int {
 	return Weaps[p.Weap].Fire()
 }
 
+// Players is an array of Characters
 type Players []Character
 
 func (slice Players) Len() int {
@@ -37,6 +41,7 @@ func (slice Players) Swap(i, j int) {
 	slice[i], slice[j] = slice[j], slice[i]
 }
 
+// Play acts out one player turn
 func (p *Character) Play() {
 	Output(p.Welcome)
 	for {
