@@ -35,7 +35,7 @@ func (e *Event) ProcessEvent(player *Character) int {
 		} else {
 			Output("green", "\t"+e.Description)
 			if e.Evt != "" {
-				e.Health = e.Health + evts[e.Evt].ProcessEvent(player)
+				e.Health = e.Health + Events[e.Evt].ProcessEvent(player)
 			}
 		}
 		return e.Health

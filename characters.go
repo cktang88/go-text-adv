@@ -67,6 +67,7 @@ func (p *Character) Play() {
 	}
 }
 
+// ProcessEvents processes an array of events for a Character
 func (p *Character) ProcessEvents(events []string) {
 	for _, evtName := range events {
 		p.Health += Events[evtName].ProcessEvent(p)

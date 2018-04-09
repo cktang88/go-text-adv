@@ -34,11 +34,11 @@ func ProcessCommands(player *Character, input string) {
 			Output("red", "Can't go to "+itemName+" from here.")
 		}
 	case "get":
-		err, index, itm := FindItemByName(itemName)
+		index, item, err := FindItemByName(itemName)
 		//Make sure we do not pick it up twice
-		if err == nil && itm.ItemInRoom(loc) && !itm.ItemOnPlayer(player) {
+		if err == nil && item.ItemInRoom(loc) && !item.ItemOnPlayer(player) {
 			player.Items = append(player.Items, index) // Add Item to Player's bag
-			itm.RemoveItemFromRoom(loc)
+			item.RemoveItemFromRoom(loc)
 		} else {
 			Output("Could not get " + itemName)
 		}

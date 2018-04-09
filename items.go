@@ -13,13 +13,13 @@ type Item struct {
 }
 
 // FindItemByName finds an item from its name
-func FindItemByName(itemName string) (error, int, *Item) {
-	for index, itm := range Items {
-		if itm.Name == itemName {
-			return nil, index, itm
+func FindItemByName(itemName string) (int, *Item, error) {
+	for index, item := range Items {
+		if item.Name == itemName {
+			return index, item, nil
 		}
 	}
-	return errors.New("Item not found"), -1, nil
+	return -1, nil, errors.New("Item not found")
 }
 
 // OpenItem attemps to let a character open an item

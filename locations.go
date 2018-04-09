@@ -25,7 +25,7 @@ func (loc *Location) CanGoTo(locName string) bool {
 
 // FindLocationName returns a location from its name
 func FindLocationName(inputName string) (string, error) {
-	for key, _ := range Locations {
+	for key := range Locations {
 		if (strings.ToLower(key) == inputName) || (strings.ToLower(key[0:3]) == inputName[0:3]) {
 			return key, nil
 		}
