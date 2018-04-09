@@ -78,7 +78,7 @@ func selectTarget(players []Character, x int) int {
 			return -1
 		}
 	}
-	return -1
+	// return -1
 }
 
 func endBattle(players []Character) bool {
@@ -94,9 +94,5 @@ func endBattle(players []Character) bool {
 			}
 		}
 	}
-	if count[0] == 0 || count[1] == 0 {
-		return true
-	} else {
-		return false
-	}
+	return (count[0] == 0 || count[1] == 0)
 }
