@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// Event represents a game event occuring to the character
 type Event struct {
 	Type        string
 	Chance      int
@@ -13,6 +14,7 @@ type Event struct {
 	Evt         string
 }
 
+// ProcessEvent processes an event on a character, and returns health of event
 func (e *Event) ProcessEvent(player *Character) int {
 	s1 := rand.NewSource(time.Now().UnixNano())
 	r1 := rand.New(s1)

@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// ProcessCommands processes user command-line input
 func ProcessCommands(player *Character, input string) {
 	Output("yellow", "======================================================================")
 	tokens := strings.Fields(input)
