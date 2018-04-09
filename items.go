@@ -75,6 +75,7 @@ func (it *Item) ItemOnPlayer(pla *Character) bool {
 }
 
 //To be refactored on a location struct
+/*
 func describeItems(player Character) {
 	l := LocationMap[player.CurrentLocation]
 
@@ -83,3 +84,4 @@ func describeItems(player Character) {
 		Outputf("\t%s\n", Items[itm].Name)
 	}
 }
+*/

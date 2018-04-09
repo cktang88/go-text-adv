@@ -18,7 +18,7 @@ func runBattle(players Players) {
 		}
 		Output("green", "Combat round ", round, " begins...")
 		for x := 0; x < players.Len(); x++ {
-			if players[x].Alive != true {
+			if !players[x].Alive {
 				continue
 			}
 			playerAction = 0
@@ -58,7 +58,7 @@ func runBattle(players Players) {
 	Output("black", players)
 	Output("green", "Combat is over...")
 	for x := 0; x < players.Len(); x++ {
-		if players[x].Alive == true {
+		if players[x].Alive {
 			Output("blue", players[x].Name+" is still alive!!!")
 		}
 	}
@@ -87,7 +87,7 @@ func endBattle(players []Character) bool {
 	count[1] = 0
 	for _, pla := range players {
 		if pla.Alive {
-			if pla.Npc == false {
+			if !pla.Npc {
 				count[0]++
 			} else {
 				count[1]++
