@@ -5,7 +5,6 @@ import (
 	"time"
 )
 
-
 type Event struct {
 	Type        string
 	Chance      int
@@ -25,14 +24,14 @@ func (e *Event) ProcessEvent(player *Character) int {
 			*opp = *Enemies[1+rand.Intn(len(Enemies)-1)]
 			opp.Npc = true
 			opp.Speed = 1 + rand.Intn(100)
-			Output("green", "A " + opp.Name + " jumps in front of you and attacks")
+			Output("green", "A "+opp.Name+" jumps in front of you and attacks")
 
 			players := Players{*player, *opp}
 			runBattle(players)
 			// Run combat
 			Output("green", "Combat Event")
 		} else {
-			Output("green", "\t" + e.Description)
+			Output("green", "\t"+e.Description)
 			if e.Evt != "" {
 				e.Health = e.Health + evts[e.Evt].ProcessEvent(player)
 			}
@@ -41,4 +40,3 @@ func (e *Event) ProcessEvent(player *Character) int {
 	}
 	return 0
 }
-

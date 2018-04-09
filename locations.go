@@ -1,18 +1,18 @@
 package main
 
 import (
-	"strings"
 	"errors"
+	"strings"
 )
 
 type Location struct {
 	Description string
 	Transitions []string
 	Events      []string
-	Items 	    []int
+	Items       []int
 }
 
-func (loc *Location)CanGoTo(locName string) bool {
+func (loc *Location) CanGoTo(locName string) bool {
 	for _, name := range loc.Transitions {
 		if (strings.ToLower(name) == locName) || (strings.ToLower(name[0:3]) == locName[0:3]) {
 			return true

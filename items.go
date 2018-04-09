@@ -5,15 +5,14 @@ import (
 )
 
 type Item struct {
-	Name string
-	Action string
+	Name       string
+	Action     string
 	ItemForUse int
-	Contains []int
+	Contains   []int
 }
 
-
 func FindItemByName(itemName string) (error, int, *Item) {
-	for index , itm := range Items {
+	for index, itm := range Items {
 		if itm.Name == itemName {
 			return nil, index, itm
 		}
@@ -29,11 +28,11 @@ func OpenItem(pla *Character, itemName string) {
 				loc.Items = append(loc.Items, Items[itm].Contains...)
 				Items[itm].Contains = *new([]int)
 			} else {
-				Output("red", "Could not open the " + itemName)
+				Output("red", "Could not open the "+itemName)
 				return
 			}
 		} else {
-			Output("red", "Could not open the " + itemName)
+			Output("red", "Could not open the "+itemName)
 		}
 	}
 }
@@ -47,7 +46,7 @@ func PlayerHasItem(pla *Character, itm int) bool {
 	return false
 }
 
-func (it *Item)RemoveItemFromRoom(loc *Location) {
+func (it *Item) RemoveItemFromRoom(loc *Location) {
 	for index, itm := range loc.Items {
 		if Items[itm].Name == it.Name {
 			loc.Items = append(loc.Items[:index], loc.Items[index+1:]...)
@@ -56,7 +55,7 @@ func (it *Item)RemoveItemFromRoom(loc *Location) {
 }
 
 //To be refactored on a location struct
-func (it *Item)ItemInRoom(loc *Location) bool {
+func (it *Item) ItemInRoom(loc *Location) bool {
 	for _, itm := range loc.Items {
 		if Items[itm].Name == it.Name {
 			return true
@@ -66,7 +65,7 @@ func (it *Item)ItemInRoom(loc *Location) bool {
 }
 
 //To be refactored on a character struct
-func (it *Item)ItemOnPlayer(pla *Character) bool {
+func (it *Item) ItemOnPlayer(pla *Character) bool {
 	for _, itm := range pla.Items {
 		if Items[itm].Name == it.Name {
 			return true
@@ -84,4 +83,3 @@ func describeItems(player Character) {
 		Outputf("\t%s\n", Items[itm].Name)
 	}
 }
-

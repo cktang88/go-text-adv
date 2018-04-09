@@ -1,8 +1,8 @@
 package main
 
 import (
-	"sort"
 	"math/rand"
+	"sort"
 )
 
 func runBattle(players Players) {
@@ -59,7 +59,7 @@ func runBattle(players Players) {
 	Output("green", "Combat is over...")
 	for x := 0; x < players.Len(); x++ {
 		if players[x].Alive == true {
-			Output("blue", players[x].Name + " is still alive!!!")
+			Output("blue", players[x].Name+" is still alive!!!")
 		}
 	}
 }
@@ -100,4 +100,3 @@ func endBattle(players []Character) bool {
 		return false
 	}
 }
-

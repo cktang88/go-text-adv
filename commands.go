@@ -4,6 +4,7 @@ import (
 	"os"
 	"strings"
 )
+
 func ProcessCommands(player *Character, input string) {
 	Output("yellow", "======================================================================")
 	tokens := strings.Fields(input)
@@ -17,25 +18,25 @@ func ProcessCommands(player *Character, input string) {
 		itemName = tokens[1]
 	}
 	loc := LocationMap[player.CurrentLocation]
-	switch(command) {
+	switch command {
 	case "go":
 		fallthrough
 	case "goto":
 		if loc.CanGoTo(strings.ToLower(itemName)) {
 			locName, err := FindLocationName(strings.ToLower(itemName))
 			if err != nil {
-				Output("red", "Can't go to " + itemName + " from here.")
+				Output("red", "Can't go to "+itemName+" from here.")
 			} else {
 				player.CurrentLocation = locName
 			}
 		} else {
-			Output("red", "Can't go to " + itemName + " from here.")
+			Output("red", "Can't go to "+itemName+" from here.")
 		}
 	case "get":
 		err, index, itm := FindItemByName(itemName)
 		//Make sure we do not pick it up twice
-		if err == nil && itm.ItemInRoom(loc)  && !itm.ItemOnPlayer(player) {
-			player.Items = append(player.Items, index)  // Add Item to Player's bag
+		if err == nil && itm.ItemInRoom(loc) && !itm.ItemOnPlayer(player) {
+			player.Items = append(player.Items, index) // Add Item to Player's bag
 			itm.RemoveItemFromRoom(loc)
 		} else {
 			Output("Could not get " + itemName)
@@ -45,7 +46,7 @@ func ProcessCommands(player *Character, input string) {
 	case "inv":
 		Output("yellow", "Your Inventory: ")
 		for _, itm := range player.Items {
-			Output("yellow", "\t" + Items[itm].Name)
+			Output("yellow", "\t"+Items[itm].Name)
 		}
 	case "help":
 		Output("blue", "Commands:")

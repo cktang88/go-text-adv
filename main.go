@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"os"
-	"math/rand"
-	"time"
 	"bufio"
+	"fmt"
+	"math/rand"
+	"os"
+	"time"
 
 	"github.com/fatih/color"
 )
@@ -41,7 +41,7 @@ func Outputf(c string, format string, args ...interface{}) {
 func Output(c string, args ...interface{}) {
 	s := fmt.Sprint(args...)
 	col := color.WhiteString
-	switch(c) {
+	switch c {
 	case "green":
 		col = color.GreenString
 	case "red":
@@ -64,4 +64,3 @@ func UserInputln() string {
 	text, _ := reader.ReadString('\n')
 	return text
 }
-

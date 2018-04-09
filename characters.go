@@ -1,6 +1,5 @@
 package main
 
-
 type Character struct {
 	Name    string
 	Health  int
@@ -9,12 +8,11 @@ type Character struct {
 	Speed   int
 	Weap    int
 	Npc     bool
-	Items 	[]int
+	Items   []int
 
 	Welcome         string
 	CurrentLocation string
 }
-
 
 func (p *Character) Equip(w int) {
 	p.Weap = w
@@ -38,7 +36,6 @@ func (slice Players) Less(i, j int) bool {
 func (slice Players) Swap(i, j int) {
 	slice[i], slice[j] = slice[j], slice[i]
 }
-
 
 func (p *Character) Play() {
 	Output(p.Welcome)
@@ -70,4 +67,3 @@ func (p *Character) ProcessEvents(events []string) {
 		p.Health += evts[evtName].ProcessEvent(p)
 	}
 }
-

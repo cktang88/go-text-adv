@@ -5,7 +5,6 @@ import (
 	"time"
 )
 
-
 type Weapon struct {
 	minAtt int
 	maxAtt int
@@ -19,4 +18,3 @@ func (w *Weapon) Fire() int {
 func init() {
 	rand.Seed(time.Now().UTC().UnixNano())
 }
-
