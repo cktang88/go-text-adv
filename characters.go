@@ -45,21 +45,21 @@ func (slice Players) Swap(i, j int) {
 func (p *Character) Play() {
 	Output(p.Welcome)
 	for {
-		Output("blue", LocationMap[p.CurrentLocation].Description)
-		p.ProcessEvents(LocationMap[p.CurrentLocation].Events)
+		Output("blue", Locations[p.CurrentLocation].Description)
+		p.ProcessEvents(Locations[p.CurrentLocation].Events)
 		if p.Health <= 0 {
 			Output("white", "You are dead, game over!!!")
 			return
 		}
 		Output("blue", "Health:", p.Health)
-		if len(LocationMap[p.CurrentLocation].Items) > 0 {
+		if len(Locations[p.CurrentLocation].Items) > 0 {
 			Output("yellow", "You can see:")
-			for _, itm := range LocationMap[p.CurrentLocation].Items {
+			for _, itm := range Locations[p.CurrentLocation].Items {
 				Outputf("yellow", "\t%s", Items[itm].Name)
 			}
 		}
 		Output("green", "You can go to these places:")
-		for _, loc := range LocationMap[p.CurrentLocation].Transitions {
+		for _, loc := range Locations[p.CurrentLocation].Transitions {
 			Outputf("green", "\t%s", loc)
 		}
 		cmd := UserInputln()
@@ -69,6 +69,6 @@ func (p *Character) Play() {
 
 func (p *Character) ProcessEvents(events []string) {
 	for _, evtName := range events {
-		p.Health += evts[evtName].ProcessEvent(p)
+		p.Health += Events[evtName].ProcessEvent(p)
 	}
 }

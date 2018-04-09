@@ -24,7 +24,7 @@ func FindItemByName(itemName string) (error, int, *Item) {
 
 // OpenItem attemps to let a character open an item
 func OpenItem(pla *Character, itemName string) {
-	loc := LocationMap[player.CurrentLocation]
+	loc := Locations[player.CurrentLocation]
 	for _, itm := range loc.Items {
 		if Items[itm].Name == itemName {
 			if Items[itm].ItemForUse != 0 && PlayerHasItem(pla, Items[itm].ItemForUse) {
@@ -84,7 +84,7 @@ func (it *Item) ItemOnPlayer(pla *Character) bool {
 //To be refactored on a location struct
 /*
 func describeItems(player Character) {
-	l := LocationMap[player.CurrentLocation]
+	l := Locations[player.CurrentLocation]
 
 	Output("You see:")
 	for _, itm := range l.Items {

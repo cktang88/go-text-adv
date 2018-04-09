@@ -20,15 +20,16 @@ var Enemies = map[int]*Character{
 	1: {Name: "Romulan", Health: 55, Alive: true, Weap: 3, Npc: true},
 }
 
-// evts is a map of events
-var evts = map[string]*Event{
+// Events is a map of events
+var Events = map[string]*Event{
 	"alienAttack":     {Type: "Combat", Chance: 20, Description: "An alien beams in front of you and shoots you with a ray gun.", Health: -50, Evt: "doctorTreatment"},
 	"doctorTreatment": {Type: "Story", Chance: 10, Description: "The doctor rushes in and inject you with a health boost.", Health: +30, Evt: ""},
 	"android":         {Type: "Story", Chance: 50, Description: "Data is in the turbo lift and says hi to you", Health: 0, Evt: ""},
 	"relaxing":        {Type: "Story", Chance: 100, Description: "In the lounge you are so relaxed that your health improves.", Health: +10, Evt: ""},
 }
 
-var LocationMap = map[string]*Location{
+// Locations is a map of all locations
+var Locations = map[string]*Location{
 	"Bridge":      {Description: "You are on the bridge of a spaceship sitting in the Captain's chair.", Transitions: []string{"ReadyRoom", "TurboLift"}, Events: []string{"alienAttack"}},
 	"ReadyRoom":   {Description: "The Captain's ready room.", Transitions: []string{"Bridge"}, Events: []string{}, Items: []int{2}},
 	"TurboLift":   {Description: "A Turbo Lift that takes you anywhere in the ship.", Transitions: []string{"Bridge", "Lounge", "Engineering"}, Events: []string{"android"}},

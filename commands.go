@@ -18,7 +18,7 @@ func ProcessCommands(player *Character, input string) {
 	if len(tokens) > 1 {
 		itemName = tokens[1]
 	}
-	loc := LocationMap[player.CurrentLocation]
+	loc := Locations[player.CurrentLocation]
 	switch command {
 	case "go":
 		fallthrough
